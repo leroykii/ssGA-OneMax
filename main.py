@@ -1,5 +1,6 @@
 import time
 from ProblemOneMax import ProblemOneMax
+from Individual import Individual
 
 
 
@@ -23,8 +24,12 @@ def main():
     mutation_probability = 1.0 / target_fitness
     MAX_ITERATION_STEPS = 5000
 
+    allele_length = 20
 
+
+    individual = Individual(allele_length)
     problem = ProblemOneMax(gene_number, gene_length, target_fitness)
+
 
 
 
