@@ -9,9 +9,7 @@ class ProblemOneMax:
 
     def evaluateStep(self, individual):
         self.fitness_counter += 1
-
         individual.fitness = individual.chromosome.alleles.count(True)
-
         return individual.fitness
 
 

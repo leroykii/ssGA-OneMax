@@ -2,10 +2,10 @@ from Chromosome import Chromosome
 
 class Individual:
 
-    def __init__(self, allele_length):
-        self.chromosome = Chromosome(allele_length)
+    def __init__(self, chromosome_length):
+        self.chromosome = Chromosome(chromosome_length)
+        self.chromosome_length = chromosome_length
         self.fitness = 0.0
-        self.allele_length = allele_length
 
     def print(self):
         self.chromosome.print()
