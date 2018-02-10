@@ -10,6 +10,7 @@ class Chromosome:
 
         # Initialize vector randomly
         for ii in range(0, allele_length):
+            print(ii)
             if (random.uniform(0, 1) > 0.5):
                 self.alleles[ii] = 1
             else:

@@ -9,7 +9,7 @@ from Individual import Individual
 #############################################
 
 def main():
-    print("helloworld")
+
     # t = Timer(1.0, hello)
     # t.start()
     #time.sleep(2)
@@ -24,14 +24,18 @@ def main():
     mutation_probability = 1.0 / target_fitness
     MAX_ITERATION_STEPS = 5000
 
-    allele_length = 20
 
 
-    individual = Individual(allele_length)
+
+    individual = Individual(population_size)
+
+
     problem = ProblemOneMax(gene_number, gene_length, target_fitness)
 
+    fitness = problem.evaluateStep(individual)
 
 
+    individual.print()
 
 #############################################
 #############################################

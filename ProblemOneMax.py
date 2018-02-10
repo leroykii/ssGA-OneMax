@@ -7,28 +7,11 @@ class ProblemOneMax:
         self.tf_known = True
         self.fitness_counter = 0
 
-        # TODO need rnadom uniform variable
-        #random r = new Random()
-
-
-
-    def evaluateStep(self): # TODO pass individual as argumetn
+    def evaluateStep(self, individual):
         self.fitness_counter += 1
 
-        f = 0.0
+        individual.fitness = individual.chromosome.alleles.count(True)
 
-        #for ii in range(1, self.chromosome_length):
-            # if idinv.getallele
-                #f = f + 1.0
-         #indiv set_fitness
-        #return f
-
-      #  for (int i=0; i < CL; i++)
-       #     if (indiv.get_allele(i) == 1)
-        #        f = f + 1.0;
-        # indiv.set_fitness(f);
-        # return f;
-
-        return
+        return individual.fitness
 
 
