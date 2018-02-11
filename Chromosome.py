@@ -1,5 +1,5 @@
 from bitarray import bitarray
-import random
+import numpy
 
 class Chromosome:
 
@@ -10,7 +10,7 @@ class Chromosome:
 
         # Initialize vector randomly
         for ii in range(0, chromosome_length):
-            if (random.uniform(0, 1) > 0.5):
+            if (numpy.random.random() > 0.5):
                 self.alleles[ii] = 1
             else:
                 self.alleles[ii] = 0

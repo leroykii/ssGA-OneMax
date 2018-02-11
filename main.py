@@ -3,70 +3,65 @@ from ProblemOneMax import ProblemOneMax
 from Individual import Individual
 from Population import Population
 from Algorithm import Algorithm
-from bitarray import bitarray
+import numpy
+import cProfile
+import matplotlib.pyplot as plt
 
 #############################################
 #############################################
 
 def main():
+    #plt.plot([1, 2, 3, 4])
+    #plt.ylabel('some numbers')
+    #plt.show()
+    #return
 
     # t = Timer(1.0, hello)
     # t.start()
     #time.sleep(2)
 
 
-
-    gene_number = 128
+    gene_number = 200
     gene_length = 1
-    population_size = 128
+    population_size = 512
     crossover_probability = 0.8
     target_fitness = gene_number * gene_length
     mutation_probability = 1.0 / target_fitness
-    MAX_ITERATION_STEPS = 5000
+    MAX_ITERATION_STEPS = 3000
 
-
-    population = Population(population_size, gene_number * gene_length)
-
-
-    # population.print_stats()
-
-    individual1 = Individual(gene_number * gene_length)
-    individual2 = Individual(gene_number * gene_length)
-
+    # Define problem
     problem = ProblemOneMax(gene_number, gene_length, target_fitness)
 
-    fitness = problem.evaluateStep(individual1)
-    fitness = problem.evaluateStep(individual2)
-
-
-    individual1.print()
-    individual2.print()
-
+    # Configure algorithm
     algorithm = Algorithm(problem, population_size, gene_number, gene_length, crossover_probability, mutation_probability)
 
-    cross_individual = algorithm.single_point_crossover(individual1, individual2)
-    cross_individual.print()
-
-    mutated_individual = algorithm.mutate(cross_individual)
-    mutated_individual.print()
-
-
+    pr = cProfile.Profile()
+    pr.enable()
 
     for iter in range(0, MAX_ITERATION_STEPS):
 
         algorithm.go_one_step()
 
-        print("[", iter, "] Best: ", 1, sep="")
+       # print("[", iter, "] Best: ", algorithm.population.bestf, sep="")
 
-        # if (problem.tf_known) && (solution_individual.fitness >= problem.target_fitness):
-            #print("Solution found after", problem.fitness_counter, "evaluations!")
-            #break
+        if ((problem.tf_known) and (algorithm.population.population[algorithm.population.bestp].fitness >= problem.target_fitness)):
+            print("Solution found after", problem.fitness_counter, "evaluations!")
+            break
 
+      #  time.sleep(0.5)
+       # algorithm.population.print_stats()
+        #input()
 
     # Print solution
-    #solution_individual.print()
+    solution_individual = algorithm.population.population[algorithm.population.bestp]
+    solution_individual.print()
+
+    pr.disable()
+    # after your program ends
+    pr.print_stats(sort="calls")
 
 #############################################
 #############################################
 if __name__ == '__main__':
     main()
+
