@@ -26,3 +26,16 @@ class Visualization:
         plt.show()
 
         return
+
+
+    def all_fitness_history(self, all_best_fitness_history):
+
+        plt.figure()
+        #axes = plt.gca()
+        #axes.set_ylim([0, 30])
+        #plt.plot(all_best_fitness_history)
+        plt.plot(all_best_fitness_history.mean(1))
+        plt.show()
+
+
+        return
