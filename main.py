@@ -1,8 +1,7 @@
 import time
 from ProblemOneMax import ProblemOneMax
-from Individual import Individual
-from Population import Population
 from Algorithm import Algorithm
+from Visualization import Visualization
 import numpy
 import cProfile
 import matplotlib.pyplot as plt
@@ -21,19 +20,19 @@ def main():
     #time.sleep(2)
 
 
-    gene_number = 200
+    gene_number = 128
     gene_length = 1
-    population_size = 512
+    population_size = 128
     crossover_probability = 0.8
     target_fitness = gene_number * gene_length
     mutation_probability = 1.0 / target_fitness
-    MAX_ITERATION_STEPS = 3000
+    MAX_ITERATION_STEPS = 10000
 
     # Define problem
     problem = ProblemOneMax(gene_number, gene_length, target_fitness)
 
     # Configure algorithm
-    algorithm = Algorithm(problem, population_size, gene_number, gene_length, crossover_probability, mutation_probability)
+    algorithm = Algorithm(problem, population_size, gene_number, gene_length, crossover_probability, mutation_probability, MAX_ITERATION_STEPS)
 
     pr = cProfile.Profile()
     pr.enable()
@@ -52,13 +51,18 @@ def main():
        # algorithm.population.print_stats()
         #input()
 
+        if (iter % 1000 == 0):
+            print("Iteration:", iter)
+
     # Print solution
     solution_individual = algorithm.population.population[algorithm.population.bestp]
     solution_individual.print()
 
     pr.disable()
-    # after your program ends
-    pr.print_stats(sort="calls")
+    #pr.print_stats(sort="calls")
+
+    visualization = Visualization()
+    visualization.fitness_history(algorithm.population, problem.fitness_counter)
 
 #############################################
 #############################################

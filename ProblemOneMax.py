@@ -7,9 +7,10 @@ class ProblemOneMax:
         self.tf_known = True
         self.fitness_counter = 0
 
+
     def evaluateStep(self, individual):
         self.fitness_counter += 1
         individual.fitness = individual.chromosome.alleles.count(True)
         return individual.fitness
 
-
+    #def

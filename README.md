@@ -8,4 +8,5 @@ Based on:
 
 ** Dependencies
 * bitarray: sudo apt install python3-bitarray
-* matplotlib:
+* matplotlib
+* numpy

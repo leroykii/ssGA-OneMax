@@ -5,7 +5,7 @@ import copy
 from bitarray import bitarray
 
 class Algorithm:
-    def __init__(self, problem, population_size, gene_number, gene_length, crossover_probability, mutation_probability):
+    def __init__(self, problem, population_size, gene_number, gene_length, crossover_probability, mutation_probability, max_evaluations):
         self.gene_number = gene_number
         self.gene_length = gene_length
         self.chromosome_length = gene_number * gene_length
@@ -13,7 +13,7 @@ class Algorithm:
         self.crossover_probability = crossover_probability
         self.mutation_probability = mutation_probability
         self.problem = problem
-        self.population = Population(population_size, self.chromosome_length)
+        self.population = Population(population_size, self.chromosome_length, max_evaluations)
 
         return
 
