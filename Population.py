@@ -25,9 +25,9 @@ class Population:
         self.BESTF = 0
         self.population_fitness = 0
         self.best_population_fitness = 0
-        self.average_fitness_history = np.empty(max_evaluations+1) # Plus one due to the init computation
-        self.best_fitness_history = np.empty(max_evaluations + 1)  # Plus one due to the init computation
-        self.worst_fitness_history = np.empty(max_evaluations + 1)  # Plus one due to the init computation
+        self.average_fitness_history = np.zeros(max_evaluations+1) # Plus one due to the init computation
+        self.best_fitness_history = np.zeros(max_evaluations + 1)  # Plus one due to the init computation
+        self.worst_fitness_history = np.zeros(max_evaluations + 1)  # Plus one due to the init computation
         self.num_evaluations = 0
 
         self.compute_stats()
@@ -77,6 +77,8 @@ class Population:
 
         if (self.population_fitness > self.best_population_fitness):
             self.best_population_fitness = self.population_fitness
+
+
 
         # Compute population average/max/min fitness and save to history array
         self.average_fitness = self.population_fitness / self.population_size
