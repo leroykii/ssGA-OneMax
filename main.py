@@ -11,11 +11,13 @@ def main():
 
     pr = cProfile.Profile()
     pr.enable()
-
+    print("hello")
+    
+        
+    
     show_plot = 1
 
     tests = Tests()
-
 
 
 
@@ -38,7 +40,7 @@ def main():
 
     print("Press ENTER to exit")
     input()
-
+    
     return
 
 

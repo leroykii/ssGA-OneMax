@@ -2,6 +2,7 @@ from Individual import Individual
 import sys
 import numpy as np
 
+
 class Population:
     def __init__(self, population_size, chromosome_length, max_evaluations):
 
@@ -13,8 +14,8 @@ class Population:
         for pp in range(population_size):
             self.population.append(Individual(chromosome_length))
 
-        #for ind in population:
-            #ind.print()
+        # for ind in population:
+        # ind.print()
 
         # Initialize statistics
         self.bestp = 0
@@ -25,7 +26,7 @@ class Population:
         self.BESTF = 0
         self.population_fitness = 0
         self.best_population_fitness = 0
-        self.average_fitness_history = np.zeros(max_evaluations+1) # Plus one due to the init computation
+        self.average_fitness_history = np.zeros(max_evaluations + 1) # Plus one due to the init computation
         self.best_fitness_history = np.zeros(max_evaluations + 1)  # Plus one due to the init computation
         self.worst_fitness_history = np.zeros(max_evaluations + 1)  # Plus one due to the init computation
         self.num_evaluations = 0
@@ -78,8 +79,6 @@ class Population:
         if (self.population_fitness > self.best_population_fitness):
             self.best_population_fitness = self.population_fitness
 
-
-
         # Compute population average/max/min fitness and save to history array
         self.average_fitness = self.population_fitness / self.population_size
         self.average_fitness_history[self.num_evaluations] = self.average_fitness
@@ -89,7 +88,6 @@ class Population:
         self.num_evaluations += 1
 
         return
-
 
     def print(self):
         for ii in range(self.population_size):

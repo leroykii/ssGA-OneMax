@@ -4,6 +4,7 @@ from Visualization import Visualization
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 class Tests:
     def __init__(self):
         return
@@ -82,11 +83,11 @@ class Tests:
         np.savetxt('output/mutation_probability', mutation_probability)
         np.save('output/target_fitness', target_fitness)
 
+
         if (show_plot):
             # Visualization
             visualization = Visualization()
             visualization.mutation(mean_mutation_best_history, mutation_probability, target_fitness)
-
 
         return
 
