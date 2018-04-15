@@ -29,7 +29,7 @@ class Visualization:
 
 
     def all_fitness_history(self, all_best_fitness_history, all_worst_fitness_history,
-                            all_average_fitness_history, all_evaluations_history):
+                            all_average_fitness_history, all_evaluations_history, target_fitness):
 
         # https: // matplotlib.org / api / _as_gen / matplotlib.axes.Axes.fill_between.html
 
@@ -44,8 +44,11 @@ class Visualization:
         plt.plot(ymin_fit, '--', label='Worst')
         plt.fill_between(x, ymin_fit, ymax_fit, alpha=0.1, color='r')
 
-        plt.axvline(x=min(all_evaluations_history), color='r', linestyle='--')
+        plt.axhline(y=target_fitness, color='r', linestyle='--', alpha=0.7, label='Target')
+        plt.axvline(x=min(all_evaluations_history), color='g', linestyle='--', label='First found')
 
+        plt.xlabel('Iterations')
+        plt.ylabel('Fitness')
         plt.legend()
         plt.show()
 
@@ -69,22 +72,47 @@ class Visualization:
         return
 
 
-    def crossover(self, mean_crossover_best_history, crossover_probability, target_fitness):
+    def crossover(self, mean_crossover_best_history, crossover_probability, target_fitness, mean_safety_ratio_history):
         plt.figure(1)
         plt.plot(mean_crossover_best_history)
+        plt.title('Crossover: Convergence analysis')
         plt.legend(crossover_probability, title='Crossover probability:').draggable(True)
 
         plt.axhline(y=target_fitness, color='r', linestyle='--', alpha=0.7)
 
+        plt.xlabel('Iterations')
+        plt.ylabel('Fitness')
         plt.show()
+
+        plt.figure(3)
+        plt.plot(mean_safety_ratio_history)
+        plt.title('Crossover: Safety ratio (normalized)')
+        plt.legend(crossover_probability, title='Crossover probabilities:').draggable(True)
+
+        plt.xlabel('Iterations')
+        plt.ylabel('Safety ratio')
+        plt.show()
+
         return
 
-    def mutation(self, mean_mutation_best_history, mutation_probability, target_fitness):
+    def mutation(self, mean_mutation_best_history, mutation_probability, target_fitness, mean_safety_ratio_history):
         plt.figure(2)
         plt.plot(mean_mutation_best_history)
+        plt.title('Mutation: Convergence analysis')
         plt.legend(mutation_probability, title='Mutation probability:').draggable(True)
 
         plt.axhline(y=target_fitness, color='r', linestyle='--', alpha=0.7)
+        plt.xlabel('Iterations')
+        plt.ylabel('Fitness')
+        plt.show()
+
+        plt.figure(3)
+        plt.plot(mean_safety_ratio_history)
+        plt.title('Mutation: Safety ratio (normalized)')
+        plt.legend(mutation_probability, title='Mutation probabilities:').draggable(True)
+        plt.xlabel('Iterations')
+        plt.ylabel('Safety ratio')
 
         plt.show()
+
         return

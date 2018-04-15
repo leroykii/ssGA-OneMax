@@ -66,6 +66,7 @@ class Algorithm:
             #mutation_bitarray[bb] = (random.uniform(0, 1) <= self.mutation_probability)
             mutation_bitarray[bb] = (numpy.random.random() <= self.mutation_probability)
 
+        #print(self.mutation_probability)
         # Mutation
         individual.chromosome.alleles ^= mutation_bitarray
 

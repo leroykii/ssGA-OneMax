@@ -26,9 +26,10 @@ class Population:
         self.BESTF = 0
         self.population_fitness = 0
         self.best_population_fitness = 0
-        self.average_fitness_history = np.zeros(max_evaluations + 1) # Plus one due to the init computation
+        self.average_fitness_history = np.zeros(max_evaluations + 1)  # Plus one due to the init computation
         self.best_fitness_history = np.zeros(max_evaluations + 1)  # Plus one due to the init computation
         self.worst_fitness_history = np.zeros(max_evaluations + 1)  # Plus one due to the init computation
+        self.safety_ratio_history = np.zeros(max_evaluations + 1)  # Plus one due to the init computation
         self.num_evaluations = 0
 
         self.compute_stats()
@@ -44,6 +45,12 @@ class Population:
 
         # Insert new individual and delete old one
         old_individual = self.population[index]
+
+        if (new_individual.fitness > old_individual.fitness):
+            self.safety_ratio_history[self.num_evaluations-1] = 1
+        else:
+            self.safety_ratio_history[self.num_evaluations-1] = 0
+
         self.population[index] = new_individual
         del old_individual
 
